@@ -1,0 +1,6 @@
+# uplouded files
+
+src/main/resources/files/**
+.DS_Store
+.idea
+target
