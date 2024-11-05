@@ -2,20 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root Variables for Rosé Pine Colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #191724;
+  --color-surface: #1f1d2e;
+  --color-overlay: #26233a;
+  --color-muted-text: #6e6a86;
+  --color-text: #e0def4;
+  --color-pink: #eb6f92;
+  --color-purple: #c4a7e7;
+  --color-gold: #f6c177;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Reset and Normalize Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* Global Container for Main Content */
+main {
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(31, 29, 46, 0.85); /* Surface with transparency */
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--color-text);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--color-purple);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* Buttons */
+button {
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-background); /* Dark background for contrast */
+  background-color: var(--color-pink);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 0.5rem;
+}
+
+button:hover {
+  background-color: var(--color-gold);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: left;
+}
+
+/* Transparent Card Style */
+.card {
+  padding: 1.5rem;
+  background-color: rgba(38, 35, 58, 0.8); /* Overlay with transparency */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer Style */
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--color-muted-text);
+}
+
+footer a {
+  color: var(--color-muted-text);
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--color-purple);
+}
+
+/* Input Fields */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1.2rem;
+  background-color: rgba(31, 29, 46, 0.85); /* Surface with transparency */
+  border: 1px solid rgba(224, 222, 244, 0.3);
+  border-radius: 4px;
+  color: var(--color-text);
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-pink);
+}
+
+/* Input Fields */
+input[type="file"] {
+  border: 2px solid var(--color-purple);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: rgba(31, 29, 46, 0.85);
+  color: var(--color-text);
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  main {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
 }
