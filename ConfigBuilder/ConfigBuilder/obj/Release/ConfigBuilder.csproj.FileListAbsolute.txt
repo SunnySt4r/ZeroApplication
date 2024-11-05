@@ -1,0 +1,15 @@
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\bin\Release\ConfigBuilder.exe.config
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\bin\Release\ConfigBuilder.exe
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\bin\Release\ConfigBuilder.pdb
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.csproj.AssemblyReference.cache
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\MainWindow.g.cs
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\App.g.cs
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder_MarkupCompile.cache
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder_MarkupCompile.lref
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\MainWindow.baml
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.g.resources
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.Properties.Resources.resources
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.csproj.GenerateResource.cache
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.csproj.CoreCompileInputs.cache
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.exe
+D:\university-2\Hack-1\ConfigBuilder\ConfigBuilder\obj\Release\ConfigBuilder.pdb

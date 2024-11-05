@@ -4,3 +4,7 @@ src/main/resources/files/**
 .DS_Store
 .idea
 target
+
+.vs/
+ConfigBuilder/ConfigBuilder/bin/Debug
+ConfigBuilder/ConfigBuilder/obj/Debug
