@@ -17,5 +17,10 @@ public class FileService {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'saveFile'");
     }
+
+    public ResponseEntity<String> generateBat(String uuid) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'generateBat'");
+    }
     
 }

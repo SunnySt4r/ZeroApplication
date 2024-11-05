@@ -31,4 +31,9 @@ public class FileController {
     public ResponseEntity<String> loadFileByName(@PathVariable("uuid") String uuid) {
         return fileService.getFileById(uuid);
     }
+
+    @GetMapping("/{uuid}/get")
+    public ResponseEntity<String> getBat(@PathVariable("uuid") String uuid) {
+        return fileService.generateBat(uuid);
+    }
 }
