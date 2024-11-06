@@ -1,11 +1,11 @@
-﻿<Window x:Class="ConfigBuilder.MainWindow"
+﻿<Window x:Class="ConfigBuilder.AuthorizationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigBuilder"
         mc:Ignorable="d"
-        Title="Config Builder" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png">
+        Title="Authorization" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -71,32 +71,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="RegistrationButton" Content="Регистрация" HorizontalAlignment="Center" Margin="0,43,0,0" VerticalAlignment="Top" Height="50" Width="200"
+        <Label x:Name="LoginLabel" Content="Логин" Margin="21,29,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Width="66"/>
+        <Label x:Name="PasswordLabel" Content="Пароль" HorizontalAlignment="Left" Margin="21,95,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="AuthorizeButton" Content="Зарегистрироваться" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Width="200"
             Background="#FF64CCF1"
             Foreground="White"
             FontFamily="Arial"
-            FontSize="20" Click="RegistrationButton_Click"
+            FontSize="20" Click="AuthorizeButton_Click" 
         />
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="LoginButton" Content="Вход" Margin="0,127,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Width="200"
-            Background="#FF64CCF1"
-            Foreground="White"
-            FontFamily="Arial"
-            FontSize="20" Click="LoginButton_Click"
-        />
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="GetAllAppsButton" Content="Get All Apps" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" Height="50" Width="200" Click="GetAllAppsButton_Click"
-            Background="#FF64CCF1"
-            Foreground="White"
-            FontFamily="Arial"
-            FontSize="20"
-            Visibility="Hidden"
-        />
-        <ProgressBar Name="ProgressBar1" IsIndeterminate="True" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" Height="20" Margin="0,117,0,0"/>
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="SaveConfigButton" Content="Save Config" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="45" Width="200" Click="SaveConfigButton_Click"
-            Background="#FF64CCF1"
-            Foreground="White"
-            FontFamily="Arial"
-            FontSize="20"
-            Visibility="Hidden"
-        />
+        <TextBox x:Name="LoginTextBox" Margin="143,33,27,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="PasswordTextBox" Margin="143,99,27,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
     </Grid>
 </Window>

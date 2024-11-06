@@ -5,7 +5,33 @@ src/main/resources/files/**
 .idea
 target
 environment
-.vs/
 .vscode/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!?*.[Cc]ache/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
 ConfigBuilder/ConfigBuilder/bin/Debug
 ConfigBuilder/ConfigBuilder/obj/Debug
+ConfigBuilder/packages/**
