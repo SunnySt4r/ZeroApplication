@@ -4,7 +4,8 @@ src/main/resources/files/**
 .DS_Store
 .idea
 target
-
+environment
 .vs/
+.vscode/
 ConfigBuilder/ConfigBuilder/bin/Debug
 ConfigBuilder/ConfigBuilder/obj/Debug
