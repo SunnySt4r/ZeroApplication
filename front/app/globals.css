@@ -12,6 +12,7 @@
   --color-pink: #eb6f92;
   --color-purple: #c4a7e7;
   --color-gold: #f6c177;
+  --checkbox-size: 16px;
 }
 
 /* Reset and Normalize Styles */
@@ -102,11 +103,6 @@ button:hover {
   background-color: var(--color-gold);
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: left;
-}
-
 /* Transparent Card Style */
 .card {
   padding: 1.5rem;
@@ -164,6 +160,21 @@ input[type="file"] {
   padding: 0.5rem;
   background-color: rgba(31, 29, 46, 0.85);
   color: var(--color-text);
+}
+
+/* Customize checkbox appearance */
+input[type="checkbox"] {
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  appearance: none;
+  border: 2px solid var(--color-text);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--color-purple);
+  border-color: var(--color-purple);
 }
 
 /* Responsive Layout */

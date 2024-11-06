@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import styles from "./Header.module.css"; // Import header styles
 import "../globals.css"; // Ensure global styles are applied
 
@@ -31,10 +32,10 @@ const Header: React.FC = () => {
       <div className={`${styles.menu} ${menuOpen ? styles.menuOpen : ""}`}>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link href="/">Home</Link>
           </li>
           <li>
-            <a href="/help">Help</a>
+            <Link href="/help">Help</Link>
           </li>
         </ul>
       </div>
