@@ -3,7 +3,6 @@ package com.example.ZeroApplication.security.controller;
 import com.example.ZeroApplication.security.dto.TokenDto;
 import com.example.ZeroApplication.security.dto.UserDto;
 import com.example.ZeroApplication.security.service.AuthService;
-import com.example.ZeroApplication.security.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

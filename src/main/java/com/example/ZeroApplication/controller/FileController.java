@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ZeroApplication.entity.FilePropertyEntity;
-import com.example.ZeroApplication.repository.FilePropertyRepository;
+import com.example.ZeroApplication.dto.FilePropertyDto;
 import com.example.ZeroApplication.service.FileService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,10 +23,9 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 
     private final FileService fileService;
-    private final FilePropertyRepository repository;
 
     @PostMapping("/")
-    public FilePropertyEntity uploadFile(@RequestBody String file) throws Exception {
+    public FilePropertyDto uploadFile(@RequestBody String file) throws Exception {
         return fileService.saveJson(file);
     }
 
@@ -37,8 +35,8 @@ public class FileController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<FilePropertyEntity>> loadFileByName() throws Exception {
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<List<FilePropertyDto>> loadFileByName() throws Exception {
+        return ResponseEntity.ok(fileService.findAll());
     }
 
     @PostMapping("/{uuid}/generate")
