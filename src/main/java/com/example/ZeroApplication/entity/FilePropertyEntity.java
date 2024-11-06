@@ -33,9 +33,6 @@ public class FilePropertyEntity {
     @Column(name = "link_json")
     private String linkJson;
 
-	@Column(name = "link_bat")
-    private String linkBat;
-
     @Column(name = "name")
     private String name;
 }

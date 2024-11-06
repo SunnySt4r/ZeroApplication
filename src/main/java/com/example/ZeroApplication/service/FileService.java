@@ -1,8 +1,8 @@
 package com.example.ZeroApplication.service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.ZeroApplication.dto.FilePropertyDto;
@@ -18,10 +18,10 @@ public class FileService {
     private final MinioService minioService;
     private final FilePropertyRepository repository;
 
-    public ResponseEntity<String> getFileById(String uuid) throws Exception {
+    public byte[] getFileById(String uuid) throws Exception {
         FilePropertyEntity entity = repository.getReferenceById(UUID.fromString(uuid));
-        String json = minioService.download(entity.getLinkJson()).toString();
-        return ResponseEntity.ok(json);
+        byte[] json = minioService.download(entity.getLinkJson());
+        return json;
     }
 
     public FilePropertyEntity saveJson(String file) throws Exception {
@@ -32,14 +32,10 @@ public class FileService {
         return repository.save(entity);
     }
 
-    public FilePropertyEntity generateBat(String uuid) throws Exception {
-        String contentType = "application/x-msdos-program";
+    public byte[] generateBat(String uuid) throws Exception {
         FilePropertyEntity entity = repository.getReferenceById(UUID.fromString(uuid));
-        String json = minioService.download(entity.getLinkJson()).toString();
-        String bat = generateBatFileFromJson(json);
-        FilePropertyDto filePropertyDto = minioService.uploadFile(bat, contentType);
-        entity.setLinkBat(filePropertyDto.getLink());
-        return repository.save(entity);
+        String json = new String(minioService.download(entity.getLinkJson()), StandardCharsets.UTF_8);
+        return generateBatFileFromJson(json).getBytes();
     }
 
     private String generateBatFileFromJson(String json) {

@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ZeroApplication.dto.FilePropertyDto;
 import com.example.ZeroApplication.entity.FilePropertyEntity;
-import com.example.ZeroApplication.mapper.FilePropertyMapper;
 import com.example.ZeroApplication.repository.FilePropertyRepository;
 import com.example.ZeroApplication.service.FileService;
 
@@ -34,17 +32,17 @@ public class FileController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<String> loadFileByName(@PathVariable("uuid") String uuid) throws Exception {
+    public byte[] loadFileByName(@PathVariable("uuid") String uuid) throws Exception {
         return fileService.getFileById(uuid);
     }
 
-    @GetMapping("/1")
+    @GetMapping("/all")
     public ResponseEntity<List<FilePropertyEntity>> loadFileByName() throws Exception {
         return ResponseEntity.ok(repository.findAll());
     }
 
-    @GetMapping("/{uuid}/get")
-    public ResponseEntity<FilePropertyDto> getBat(@PathVariable("uuid") String uuid) throws Exception {
-        return ResponseEntity.ok(FilePropertyDto.builder().link("").build());
+    @GetMapping("/{uuid}/generate")
+    public byte[] getBat(@PathVariable("uuid") String uuid) throws Exception {
+        return  fileService.generateBat(uuid);
     }
 }
