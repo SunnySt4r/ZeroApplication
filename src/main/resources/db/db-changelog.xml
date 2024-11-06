@@ -6,5 +6,5 @@
 
 
     <include file="/db/migrations/2024-11-06-create-file-table.xml"/>
-
+    <include file="/db/migrations/2024-11-06-create-user-table.xml"/>
 </databaseChangeLog>

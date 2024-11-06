@@ -24,7 +24,6 @@ public class BatGeneratorService {
         } catch (com.google.gson.JsonSyntaxException exception){
             System.out.println("Ошибка чтения jsonContent: " + exception.getMessage());
         }
-
         return batContent.toString();
     }
 }

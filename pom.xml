@@ -91,6 +91,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--	db-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -177,6 +183,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.1.4</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
