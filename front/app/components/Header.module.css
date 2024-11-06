@@ -1,0 +1,95 @@
+/* Header Styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(
+    38,
+    35,
+    58,
+    0.9
+  ); /* Semi-transparent header background */
+  backdrop-filter: blur(10px); /* Blur effect for header */
+  position: fixed; /* Fixed position to stay at the top */
+  top: 0; /* Aligns the header to the top */
+  left: 0; /* Aligns the header to the left */
+  right: 0; /* Aligns the header to the right */
+  z-index: 10; /* Ensure it is above other elements */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+/* Menu Icon Styling */
+.menuIcon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--color-text); /* Icon color */
+}
+
+/* Sliding Menu Styling */
+.menu {
+  position: fixed; /* Fixed position to align the menu */
+  top: 0; /* Aligns the menu to the top */
+  right: -100%; /* Hide menu off-screen */
+  width: 250px;
+  height: 100%; /* Full height */
+  background-color: rgba(
+    38,
+    35,
+    58,
+    0.9
+  ); /* Semi-transparent menu background */
+  color: var(--color-text); /* Menu text color */
+  transition: right 0.3s ease; /* Smooth transition */
+  padding-top: 3rem; /* Space from the top */
+  backdrop-filter: blur(10px); /* Blur effect for the menu */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  z-index: 15; /* Ensure it is above other elements */
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+}
+
+.menuOpen {
+  right: 0; /* Show menu on open */
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Enable flexbox for the menu list */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+.menu li {
+  margin: 1.5rem 0; /* Space between items */
+}
+
+.menu a {
+  color: var(--color-text); /* Menu link color */
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.menu a:hover {
+  color: var(--color-gold); /* Menu link hover color */
+}
+
+/* Overlay for closing the menu */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for menu */
+  z-index: 10; /* Ensure it is above other elements */
+}
