@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserDto {
     @NotBlank(message = "Username is mandatory")
     private String username;

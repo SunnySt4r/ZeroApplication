@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class AppExceptionHandler {
     
-    @ExceptionHandler({Exception.class})
-    protected ResponseEntity<ErrorMessage> handleNotFound(Exception ex) {
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(new ErrorMessage("Command not found"));
-    }
+    // @ExceptionHandler({Exception.class})
+    // protected ResponseEntity<ErrorMessage> handleNotFound(Exception ex) {
+    //     return ResponseEntity
+    //             .status(HttpStatus.NOT_FOUND)
+    //             .body(new ErrorMessage(ex.getMessage()));
+    // }
 }

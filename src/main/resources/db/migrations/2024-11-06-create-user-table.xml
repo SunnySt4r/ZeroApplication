@@ -25,7 +25,6 @@
 
         <addColumn tableName="file_properties">
             <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
             </column>
         </addColumn>
 
