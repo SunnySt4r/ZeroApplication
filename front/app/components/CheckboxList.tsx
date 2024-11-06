@@ -25,49 +25,28 @@ interface Package {
   Version: string;
 }
 
-interface Props {
-  items: Package[];
-}
+const PostConfig = async (url: string, body: any) => {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "appication/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("There was a problem with the request:", err);
+  }
+};
 
 const CheckboxList: React.FC = () => {
-  const dummy = {
-    $schema: "https://aka.ms/winget-packages.schema.2.0.json",
-    CreationDate: "2024-11-05T20:07:31.014-00:00",
-    Sources: [
-      {
-        Packages: [
-          {
-            PackageIdentifier: "Microsoft.Teams",
-            Version: "24277.3507.3205.5228",
-          },
-          {
-            PackageIdentifier: "Microsoft.AppInstaller",
-            Version: "1.24.25180.0",
-          },
-          {
-            PackageIdentifier: "Microsoft.UI.Xaml.2.7",
-            Version: "7.2409.9001.0",
-          },
-          {
-            PackageIdentifier: "Microsoft.UI.Xaml.2.8",
-            Version: "8.2310.30001.0",
-          },
-          {
-            PackageIdentifier: "Microsoft.VCLibs.Desktop.14",
-            Version: "14.0.33728.0",
-          },
-        ],
-        SourceDetails: {
-          Argument: "https://cdn.winget.microsoft.com/cache",
-          Identifier: "Microsoft.Winget.Source_8wekyb3d8bbwe",
-          Name: "winget",
-          Type: "Microsoft.PreIndexed.Package",
-        },
-      },
-    ],
-    WinGetVersion: "1.9.25180",
-  };
-
   const [data, setData] = useState<Package[] | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -82,10 +61,20 @@ const CheckboxList: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+<<<<<<< Updated upstream
         const response = await fetch("http://91.210.169.254:8080/file/all", {
           mode: "cors",
           credentials: "include",
         })
+=======
+        const response = await fetch(
+          "http://91.210.169.254:8080/file/d816a08d-460c-4f6a-a891-30aa9d6bb04e",
+          {
+            mode: "cors",
+            credentials: "include",
+          },
+        )
+>>>>>>> Stashed changes
           .then(async (response) => (await response.json()) as ServerResponse)
           .then((data) => {
             const { Packages } = data.Sources[0];
@@ -107,7 +96,7 @@ const CheckboxList: React.FC = () => {
   if (loading) return <p>loading...</p>;
 
   return (
-    <div className="p-4 space-y-2 bg-surface rounded-lg">
+    <div className="p-4 space-y-2 bg-surface rounded-lg mt-20">
       {data == null ? (
         <span>No packages loaded</span>
       ) : (
@@ -126,6 +115,7 @@ const CheckboxList: React.FC = () => {
           </label>
         ))
       )}
+      <button className="mt-4">Install</button>
     </div>
   );
 };
