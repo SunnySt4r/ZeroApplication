@@ -1,6 +1,5 @@
 package com.example.ZeroApplication.service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -32,10 +31,8 @@ public class FileService {
         return repository.save(entity);
     }
 
-    public byte[] generateBat(String uuid) throws Exception {
-        FilePropertyEntity entity = repository.getReferenceById(UUID.fromString(uuid));
-        String json = new String(minioService.download(entity.getLinkJson()), StandardCharsets.UTF_8);
-        return generateBatFileFromJson(json).getBytes();
+    public byte[] generateBat(String uuid, String file) throws Exception {
+        return generateBatFileFromJson(file).getBytes();
     }
 
     private String generateBatFileFromJson(String json) {

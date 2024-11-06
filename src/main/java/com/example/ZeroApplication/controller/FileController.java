@@ -41,8 +41,8 @@ public class FileController {
         return ResponseEntity.ok(repository.findAll());
     }
 
-    @GetMapping("/{uuid}/generate")
-    public byte[] getBat(@PathVariable("uuid") String uuid) throws Exception {
-        return  fileService.generateBat(uuid);
+    @PostMapping("/{uuid}/generate")
+    public byte[] getBat(@PathVariable("uuid") String uuid, @RequestBody String file) throws Exception {
+        return  fileService.generateBat(uuid, file);
     }
 }

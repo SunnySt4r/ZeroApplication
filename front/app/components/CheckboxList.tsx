@@ -82,7 +82,7 @@ const CheckboxList: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://91.210.169.254:8080/file/all", {
+        const response = await fetch("http://localhost:8080/file/all", {
           mode: "cors",
           credentials: "include",
         })
