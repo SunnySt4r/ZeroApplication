@@ -1,0 +1,59 @@
+version: "3"
+services:
+  zero_application:
+    image: zero_application:0.0.1
+    container_name: zero_application
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    environment:
+      - SERVER_PORT=8080
+      - SERVER_ADDRESS=0.0.0.0
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database/database
+      # - MINIO_URL=http://minio:9000
+
+
+  database:
+    image: postgres:14-alpine3.18
+    container_name: database
+    environment:
+      POSTGRES_DB: "database"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    ports:
+      - "15432:5432"
+    volumes:
+      - zero-application-db:/data/postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d database" ]
+      interval: 5s
+      retries: 5
+      timeout: 10s
+
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: user
+      MINIO_ROOT_PASSWORD: password
+    volumes:
+      - ./environment/minio/data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address :9001
+
+volumes:
+  zero-application-db:
+  storage-minio:
