@@ -19,7 +19,7 @@ services:
       - SERVER_PORT=8080
       - SERVER_ADDRESS=0.0.0.0
       - SPRING_DATASOURCE_URL=jdbc:postgresql://database/database
-      # - MINIO_URL=http://minio:9000
+      - MINIO_URL=http://minio:9000
 
 
   database:

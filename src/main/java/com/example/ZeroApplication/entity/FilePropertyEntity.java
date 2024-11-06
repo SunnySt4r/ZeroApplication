@@ -22,7 +22,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "fileProperties")
+@Table(name = "file_properties")
 public class FilePropertyEntity {
     @Id
     @Column(name = "id")

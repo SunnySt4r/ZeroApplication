@@ -12,8 +12,7 @@ import com.example.ZeroApplication.entity.FilePropertyEntity;
 @Mapper(componentModel = "spring")
 public abstract class FilePropertyMapper {
     @Mapping(target = "link", source = "uuid", qualifiedByName = "toUrl")
-    public
-    abstract FilePropertyDto toFilePropertyDto(FilePropertyEntity file);
+    public abstract FilePropertyDto toFilePropertyDto(FilePropertyEntity file);
 
     @Named("toUrl")
     public static String toUrl(String uuid) {

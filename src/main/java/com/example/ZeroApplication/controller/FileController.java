@@ -1,5 +1,7 @@
 package com.example.ZeroApplication.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ZeroApplication.dto.FilePropertyDto;
 import com.example.ZeroApplication.entity.FilePropertyEntity;
 import com.example.ZeroApplication.mapper.FilePropertyMapper;
+import com.example.ZeroApplication.repository.FilePropertyRepository;
 import com.example.ZeroApplication.service.FileService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 
     private final FileService fileService;
-    private final FilePropertyMapper mapper;
+    private final FilePropertyRepository repository;
 
     @PostMapping("/")
     public FilePropertyEntity uploadFile(@RequestBody String file) throws Exception {
@@ -35,8 +38,13 @@ public class FileController {
         return fileService.getFileById(uuid);
     }
 
+    @GetMapping("/1")
+    public ResponseEntity<List<FilePropertyEntity>> loadFileByName() throws Exception {
+        return ResponseEntity.ok(repository.findAll());
+    }
+
     @GetMapping("/{uuid}/get")
     public ResponseEntity<FilePropertyDto> getBat(@PathVariable("uuid") String uuid) throws Exception {
-        return ResponseEntity.ok(mapper.toFilePropertyDto(fileService.generateBat(uuid)));
+        return ResponseEntity.ok(FilePropertyDto.builder().link("").build());
     }
 }

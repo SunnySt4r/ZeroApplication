@@ -43,8 +43,7 @@ public class FileService {
     }
 
     private String generateBatFileFromJson(String json) {
-        //TODO
-        return "";
+        return BatGeneratorService.generateBatFile(json);
     }
     
 }
