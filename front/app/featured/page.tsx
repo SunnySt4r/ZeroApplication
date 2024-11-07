@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import getPackages, { IPackage, IResponse } from "@/api/wingetrun";
-import Card from "@/components/Card";
 import SearchBar from "@/components/SearchBar";
 import CardContainer from "@/components/CardContainer";
 
