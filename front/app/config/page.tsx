@@ -31,12 +31,12 @@ const Uuid = () => {
         <h1 className="text-2xl font-semibold text-text ">
           Loaded your config
         </h1>
-        {config === null || config === undefined ? (
+        {!config || !uuid ? (
           <p>Nothing here...</p>
         ) : (
           <>
             <p>Choose what to install</p>
-            <CheckboxList config={config} uuid={uuid as string}></CheckboxList>
+            <CheckboxList config={config} uuid={uuid}></CheckboxList>
           </>
         )}
       </DataProvider>
