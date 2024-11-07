@@ -86,7 +86,7 @@ namespace ConfigBuilder
                     string responseJSON = await PostRequestAsync("http://91.210.169.254:8080/file/", jsonData, JWTToken);
                     JObject obj = JObject.Parse(responseJSON);
                     string uuid = (string)obj["uuid"];
-                    ConfigHyperlinkWindow configHyperlinkWindow = new ConfigHyperlinkWindow(this, $"http://91.210.169.254:8080/swagger-ui/index.html#/Контроллер%20файлов/loadFileByName");
+                    ConfigHyperlinkWindow configHyperlinkWindow = new ConfigHyperlinkWindow(this, $"http://91.210.169.254:3000/config?uuid={uuid}");
                     configHyperlinkWindow.ShowDialog();
                 }
                 catch
