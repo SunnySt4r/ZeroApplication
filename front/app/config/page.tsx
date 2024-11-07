@@ -36,7 +36,7 @@ const Uuid = () => {
         ) : (
           <>
             <p>Choose what to install</p>
-            <CheckboxList config={config} uuid={uuid}></CheckboxList>
+            <CheckboxList config={config} uuid={uuid as string}></CheckboxList>
           </>
         )}
       </DataProvider>
