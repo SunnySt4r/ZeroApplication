@@ -4,7 +4,7 @@ services:
     image: zero_application:0.0.1
     container_name: zero_application
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     expose:
       - "8080"
