@@ -24,4 +24,4 @@ docker-compose up
 ```
 
 ## Презентация
-**TODO**
+https://github.com/SunnySt4r/ZeroApplication/blob/7882c509b56be04b1fede749671b0cae8bb9274a/ZeroApp.pdf
