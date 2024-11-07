@@ -6,9 +6,9 @@ spring:
   liquibase:
     change-log: classpath:/db/db-changelog.xml
   datasource:
-    url: jdbc:postgresql://localhost:15432/database
-    username: user
-    password: password
+    url: jdbc:postgresql://localhost:15432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -17,8 +17,8 @@ spring:
 minio:
   url: http://localhost:9000
   port: 9000
-  accessKey: user
-  secretKey: password
+  accessKey: ${MINIO_ROOT_USER}
+  secretKey: ${MINIO_ROOT_PASSWORD}
   secure: false
   bucket: minio-storage
   file-size: 10485760
