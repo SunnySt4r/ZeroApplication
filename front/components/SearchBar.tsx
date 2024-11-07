@@ -1,22 +1,16 @@
-import { KeyObject } from "crypto";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface SearchBarProps {
-  onSearch: (query: string) => void;
   placeholder?: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
-  onSearch,
-  placeholder = "Search...",
-}) => {
+const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search..." }) => {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;
     setQuery(newQuery);
-    onSearch(newQuery);
   };
 
   const router = useRouter();
