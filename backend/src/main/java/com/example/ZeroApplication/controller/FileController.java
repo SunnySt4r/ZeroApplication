@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ZeroApplication.dto.FilePropertyDto;
+import com.example.ZeroApplication.entity.FilePropertyEntity;
 import com.example.ZeroApplication.service.FileService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +25,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/")
-    public FilePropertyDto uploadFile(@RequestBody String file) throws Exception {
+    public FilePropertyEntity uploadFile(@RequestBody String file) throws Exception {
         return fileService.saveJson(file);
     }
 
@@ -35,7 +35,7 @@ public class FileController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<FilePropertyDto>> loadFileByName() throws Exception {
+    public ResponseEntity<List<FilePropertyEntity>> loadFileByName() throws Exception {
         return ResponseEntity.ok(fileService.findAll());
     }
 

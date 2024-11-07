@@ -54,6 +54,20 @@ services:
       - "9001:9001"
     command: server /data --console-address :9001
 
+
+  frontend:
+    image: zero_app_front:0.0.1
+    container_name: zero_app_front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+      target: build
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "3000:3000"
+
+
 volumes:
   zero-application-db:
   storage-minio:
