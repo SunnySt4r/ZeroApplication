@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigBuilder"
         mc:Ignorable="d"
-        Title="Config Builder" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png">
+        Title="Config Builder" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -83,15 +83,15 @@
             FontFamily="Arial"
             FontSize="20" Click="LoginButton_Click"
         />
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="GetAllAppsButton" Content="Get All Apps" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" Height="50" Width="200" Click="GetAllAppsButton_Click"
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="GetAllAppsButton" Content="Собрать конфиг" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" Height="50" Width="200" Click="GetAllAppsButton_Click"
             Background="#FF64CCF1"
             Foreground="White"
             FontFamily="Arial"
             FontSize="20"
             Visibility="Hidden"
         />
-        <ProgressBar Name="ProgressBar1" IsIndeterminate="True" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" Height="20" Margin="0,117,0,0"/>
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="SaveConfigButton" Content="Save Config" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="45" Width="200" Click="SaveConfigButton_Click"
+        <ProgressBar Name="ProgressBar1" IsIndeterminate="True" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" Height="20" Margin="0,98,0,0"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="SaveConfigButton" Content="Отправить конфиг" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="45" Width="200" Click="SaveConfigButton_Click"
             Background="#FF64CCF1"
             Foreground="White"
             FontFamily="Arial"

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
+using Newtonsoft.Json.Linq;
 using ClassLibrary;
 
 namespace ConfigBuilder
@@ -14,6 +15,7 @@ namespace ConfigBuilder
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string JWTToken { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -60,7 +62,7 @@ namespace ConfigBuilder
             }
         }
 
-        private /*async*/ void SaveConfigButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveConfigButton_Click(object sender, RoutedEventArgs e)
         {
             string configFilePath = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\test.json");
             if (!File.Exists(configFilePath))
@@ -71,46 +73,47 @@ namespace ConfigBuilder
             }
             else
             {
+                string jsonData = string.Empty;
                 using (FileStream file = File.OpenRead(configFilePath))
                 {
                     using (StreamReader reader = new StreamReader(file))
                     {
-                        string jsonData = reader.ReadToEnd();
-                        //string responseJSON = await PostRequestAsync("http://91.210.169.254:8080/file/", jsonData);
-                        //JObject obj = JObject.Parse(responseJSON);
-                        //string uuid = (string)obj["uuid"];
-                        ConfigHyperlinkWindow configHyperlinkWindow = new ConfigHyperlinkWindow(this, $"http://91.210.169.254:8080/swagger-ui/index.html#/Контроллер%20файлов/loadFileByName");
-                        configHyperlinkWindow.ShowDialog();
+                        jsonData = reader.ReadToEnd();
                     }
                 }
+                try
+                {
+                    string responseJSON = await PostRequestAsync("http://91.210.169.254:8080/file/", jsonData, JWTToken);
+                    JObject obj = JObject.Parse(responseJSON);
+                    string uuid = (string)obj["uuid"];
+                    ConfigHyperlinkWindow configHyperlinkWindow = new ConfigHyperlinkWindow(this, $"http://91.210.169.254:8080/swagger-ui/index.html#/Контроллер%20файлов/loadFileByName");
+                    configHyperlinkWindow.ShowDialog();
+                }
+                catch
+                {
+                    MessageBox.Show("Попробуйте ещё раз!", "Oooops, something went wrong");
+                }
             }
-            //MessageBox.Show("Молодец, твои конфиги улетели на фронт)", "Топай на фронт!");
         }
 
-        private static async Task<string> PostRequestAsync(string url, string jsonData)
+        private static async Task<string> PostRequestAsync(string url, string jsonData, string jwtToken)
         {
             using (HttpClient client = new HttpClient())
             {
-                try
-                {
-                    client.DefaultRequestHeaders.Add("User-Agent", "C# HttpClient");
-                    // Формируем содержимое запроса (используем JSON)
-                    StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Add("User-Agent", "C# HttpClient");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {jwtToken}");
+                // Формируем содержимое запроса (используем JSON)
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage response = await client.PostAsync(url, content);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Читаем и возвращаем строку ответа
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                    else
-                    {
-                        throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                    }
-                }
-                catch (Exception ex)
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
                 {
-                    return $"Exception: {ex.Message}";
+                    // Читаем и возвращаем строку ответа
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 }
             }
         }

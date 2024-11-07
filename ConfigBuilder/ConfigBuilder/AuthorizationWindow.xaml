@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigBuilder"
         mc:Ignorable="d"
-        Title="Authorization" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png">
+        Title="Authorization" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -71,15 +71,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="LoginLabel" Content="Логин" Margin="21,29,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Width="66"/>
+        <Label x:Name="UsernameLabel" Content="Логин" Margin="21,29,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Width="66"/>
         <Label x:Name="PasswordLabel" Content="Пароль" HorizontalAlignment="Left" Margin="21,95,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="AuthorizeButton" Content="Зарегистрироваться" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Width="200"
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="AuthorizeButton" Content="Зарегистрироваться" Margin="0,154,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="50"
             Background="#FF64CCF1"
             Foreground="White"
             FontFamily="Arial"
-            FontSize="20" Click="AuthorizeButton_Click" 
+            FontSize="20" Click="AuthorizeButton_Click"
         />
-        <TextBox x:Name="LoginTextBox" Margin="143,33,27,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="UsernameTextBox" Margin="143,33,27,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="PasswordTextBox" Margin="143,99,27,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
     </Grid>
 </Window>

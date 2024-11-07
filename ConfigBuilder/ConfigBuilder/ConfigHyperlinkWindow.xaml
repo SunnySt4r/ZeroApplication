@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigBuilder"
         mc:Ignorable="d"
-        Title="Config Hyperlink" Height="200" Width="500" Icon="/download.png" WindowStartupLocation="CenterScreen">
+        Title="Config Hyperlink" Height="200" Width="500" Icon="/download.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -69,18 +69,17 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition Width="327*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="TextBlock1" Margin="32,20,0,0" Grid.ColumnSpan="2" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="436" TextAlignment="Center">
+        <TextBlock x:Name="TextBlock1" Margin="0,20,0,0" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Width="436" TextAlignment="Center">
             По <Hyperlink Name="Hyperlink01" NavigateUri="http://www.example.com" RequestNavigate="Hyperlink_RequestNavigate">этой ссылке</Hyperlink> доступна ваша конфигурация.<LineBreak/>Не забудьте сохранить её!
         </TextBlock>
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="CloseProgramButton" Content="Закрыть программу" HorizontalAlignment="Left" Margin="59,103,0,0" VerticalAlignment="Top" Height="50" Width="200" Click="CloseProgramButton_Click"
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="CloseProgramButton" Content="Закрыть программу" Margin="0,92,0,0" HorizontalAlignment="Center" Height="50" VerticalAlignment="Top" Width="200" Click="CloseProgramButton_Click"
             Background="#FF64CCF1"
             Foreground="White"
             FontFamily="Arial"
-            FontSize="20" Grid.Column="1"
+            FontSize="20"
         />
     </Grid>
 </Window>
