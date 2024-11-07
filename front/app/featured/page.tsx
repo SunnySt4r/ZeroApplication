@@ -42,6 +42,8 @@ export default function Featured() {
     console.log("Add button clicked");
   };
 
+  if (loading && pkgs.length == 0) return <main>Loading...</main>;
+
   return (
     <>
       <div className="mt-32">

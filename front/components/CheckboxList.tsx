@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { post } from "../api/utils";
+import { useRouter } from "next/navigation";
 
 export interface ServerResponse {
   $schema: string;
@@ -66,9 +67,15 @@ const CheckboxList: React.FC<Props> = (props) => {
     console.log(res);
   };
 
+  const router = useRouter();
+  const handleAdd = () => {
+    router.push("/featured");
+  };
+
   const handleUncheckAll = () => {
     setCheckedItems([]);
   };
+
   const handleCheckAll = () => {
     setCheckedItems(
       sources.flatMap((source) =>
@@ -94,8 +101,9 @@ const CheckboxList: React.FC<Props> = (props) => {
                   checked={checkedItems.includes(pkg.PackageIdentifier)}
                   onChange={() => handleCheckboxChange(pkg.PackageIdentifier)}
                 />
-                <span>{pkg.PackageIdentifier}</span>
-                <span>Source: {item.SourceDetails.Name}</span>
+                <span>
+                  {pkg.PackageIdentifier.split(".").slice(1).join(".")}
+                </span>
               </label>
             )),
           )
@@ -104,6 +112,9 @@ const CheckboxList: React.FC<Props> = (props) => {
       <div className="mt-4 flex space-x-2">
         <button className="bg-blue-300" onClick={handleInstall}>
           Install
+        </button>
+        <button className="bg-color-purple" onClick={handleAdd}>
+          Browse for more
         </button>
         <button onClick={handleUncheckAll}>Uncheck All</button>
         <button onClick={handleCheckAll}>Check All</button>

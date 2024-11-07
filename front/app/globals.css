@@ -29,7 +29,7 @@ body {
 }
 
 main {
-  @apply max-w-full mx-10 mt-40 mb-10 p-8 text-lg bg-color-surface bg-opacity-85 rounded-lg backdrop-blur-md shadow-lg;
+  @apply max-w-full m-10 p-8 text-lg bg-color-surface bg-opacity-85 rounded-lg backdrop-blur-md shadow-lg;
 }
 
 h1,
