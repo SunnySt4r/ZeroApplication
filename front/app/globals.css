@@ -83,12 +83,12 @@ footer a:hover {
 
 input[type="text"],
 textarea {
-  @apply w-full py-3 mb-4 bg-color-surface bg-opacity-85 border border-color-muted-text rounded-md text-color-text;
+  @apply w-full py-3 mb-4 bg-color-surface bg-opacity-85 border border-color-text rounded-md text-color-text;
 }
 
 input[type="text"]:focus,
 textarea:focus {
-  @apply outline-none border-color-pink;
+  @apply outline-none border-color-purple;
 }
 
 input[type="file"] {
