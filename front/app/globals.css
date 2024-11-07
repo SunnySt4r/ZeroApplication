@@ -1,8 +1,9 @@
+/* @tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Root Variables for Rosé Pine Colors */
+/* Root style for Tailwind custom colors */
 :root {
   --color-background: #191724;
   --color-surface: #1f1d2e;
@@ -12,178 +13,103 @@
   --color-pink: #eb6f92;
   --color-purple: #c4a7e7;
   --color-gold: #f6c177;
-  --checkbox-size: 16px;
 }
 
-/* Reset and Normalize Styles */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Apply base styles directly in Tailwind classes */
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  font-size: 16px;
-  background-color: var(--color-background);
-  color: var(--color-text);
-  height: 100%;
+  @apply font-sans bg-color-background text-color-text;
   scroll-behavior: smooth;
+  height: 100%;
+  margin: 0;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  overflow-x: hidden;
+  @apply block min-h-screen overflow-x-hidden;
 }
 
-/* Global Container for Main Content */
 main {
-  max-width: 1200px;
-  width: 100%;
-  padding: 2rem;
-  background-color: rgba(31, 29, 46, 0.85); /* Surface with transparency */
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  @apply max-w-full m-10 p-8 text-lg bg-color-surface bg-opacity-85 rounded-lg backdrop-blur-md shadow-lg;
 }
 
-/* Typography */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: var(--color-text);
-  font-weight: 700;
-  margin-bottom: 1rem;
+  @apply text-color-text font-bold mb-4;
 }
 
 p {
-  color: var(--color-text);
-  line-height: 1.8;
-  margin-bottom: 1rem;
+  @apply text-color-text leading-relaxed mb-4;
 }
 
-/* Links */
 a {
-  color: var(--color-purple);
-  text-decoration: none;
-  transition: color 0.3s ease;
+  @apply text-color-purple no-underline transition-colors duration-300 ease-in-out;
 }
 
 a:hover {
-  color: var(--color-gold);
+  @apply text-color-gold;
 }
 
-/* Buttons */
 button {
-  padding: 0.6em 1.2em;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-background); /* Dark background for contrast */
-  background-color: var(--color-pink);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0 0.5rem;
+  @apply py-2 px-4 bg-color-pink text-color-background border-none rounded-md cursor-pointer transition-colors duration-300 ease-in-out;
 }
 
 button:hover {
-  background-color: var(--color-gold);
+  @apply bg-color-gold;
 }
 
-/* Transparent Card Style */
 .card {
-  padding: 1.5rem;
-  background-color: rgba(38, 35, 58, 0.8); /* Overlay with transparency */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  @apply p-6 bg-color-surface bg-opacity-80 rounded-lg shadow-md transition-all duration-300 ease-in-out;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  @apply transform translate-y-1 shadow-xl;
 }
 
-/* Footer Style */
 footer {
-  margin-top: 2rem;
-  text-align: center;
-  color: var(--color-muted-text);
+  @apply mt-8 text-center text-color-muted-text;
 }
 
 footer a {
-  color: var(--color-muted-text);
-  transition: color 0.3s ease;
+  @apply text-color-muted-text transition-colors duration-300 ease-in-out;
 }
 
 footer a:hover {
-  color: var(--color-purple);
+  @apply text-color-purple;
 }
 
-/* Input Fields */
 input[type="text"],
 textarea {
-  width: 100%;
-  padding: 0.8em;
-  margin-bottom: 1.2rem;
-  background-color: rgba(31, 29, 46, 0.85); /* Surface with transparency */
-  border: 1px solid rgba(224, 222, 244, 0.3);
-  border-radius: 4px;
-  color: var(--color-text);
+  @apply w-full py-3 mb-4 bg-color-surface bg-opacity-85 border border-color-text rounded-md text-color-text;
 }
 
 input[type="text"]:focus,
 textarea:focus {
-  outline: none;
-  border-color: var(--color-pink);
+  @apply outline-none border-color-purple;
 }
 
-/* Input Fields */
 input[type="file"] {
-  border: 2px solid var(--color-purple);
-  border-radius: 4px;
-  padding: 0.5rem;
-  background-color: rgba(31, 29, 46, 0.85);
-  color: var(--color-text);
+  @apply border-2 border-color-purple rounded-md p-2 bg-color-surface bg-opacity-85 text-color-text;
 }
 
-/* Customize checkbox appearance */
 input[type="checkbox"] {
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
-  appearance: none;
-  border: 2px solid var(--color-text);
-  border-radius: 4px;
-  transition: background 0.2s;
+  @apply w-4 h-4 appearance-none border-2 border-color-text rounded-md transition-all duration-200 ease-in-out;
 }
 
 input[type="checkbox"]:checked {
-  background: var(--color-purple);
-  border-color: var(--color-purple);
+  @apply bg-color-purple border-color-purple;
 }
 
 /* Responsive Layout */
 @media (max-width: 768px) {
   main {
-    padding: 1.5rem;
+    @apply p-6;
   }
 
   h1 {
-    font-size: 1.8rem;
+    @apply text-2xl;
   }
 }

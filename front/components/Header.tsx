@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import styles from "./Header.module.css"; // Import header styles
-import "../globals.css"; // Ensure global styles are applied
+import styles from "./Header.module.css";
+import "@/app/globals.css";
 
 const Header: React.FC = () => {
   const router = useRouter();
