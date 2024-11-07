@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({
       </div>
       <button
         onClick={onAdd}
-        className="mt-4 bg-pink text-background font-medium py-1 px-4 rounded hover:bg-gold"
+        className="mt-4 bg-color-purple text-background font-medium py-1 px-4 rounded hover:bg-gold"
       >
         Add
       </button>
