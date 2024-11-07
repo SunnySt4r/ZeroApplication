@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^2.4.8",
     "next": "^15.0.2",
     "nextui-cli": "^0.3.5",
     "react": "19.0.0-rc-02c0e824-20241028",

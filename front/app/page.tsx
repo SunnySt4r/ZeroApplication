@@ -6,7 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleCreateConfig = () => {
-    router.push("/config?uuid=d816a08d-460c-4f6a-a891-30aa9d6bb04e");
+    router.push("/config?uuid=26230398-d7e2-4a81-bf86-ccf5f229de02");
   };
 
   const handleSearch = () => {
