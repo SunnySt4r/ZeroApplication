@@ -4,7 +4,7 @@ services:
     image: zero_application:0.0.1
     container_name: zero_application
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     expose:
       - "8080"
@@ -16,20 +16,20 @@ services:
       minio:
         condition: service_started
     environment:
-      - SERVER_PORT=8080
-      - SERVER_ADDRESS=0.0.0.0
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://database/database
-      - MINIO_URL=http://minio:9000
+      SERVER_PORT: ${SERVER_PORT}
+      SERVER_ADDRESS: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      MINIO_URL: ${MINIO_URL}
 
 
   database:
     image: postgres:14-alpine3.18
     container_name: database
     environment:
-      POSTGRES_DB: "database"
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "password"
-      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_INITDB_ARGS: ${POSTGRES_INITDB_ARGS}
     ports:
       - "15432:5432"
     volumes:
@@ -45,8 +45,8 @@ services:
     image: minio/minio:latest
     container_name: minio
     environment:
-      MINIO_ROOT_USER: user
-      MINIO_ROOT_PASSWORD: password
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
       - ./environment/minio/data:/data
     ports:

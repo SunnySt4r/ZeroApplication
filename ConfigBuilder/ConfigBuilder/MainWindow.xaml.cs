@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
-using System.Security.AccessControl;
+using ClassLibrary;
 
 namespace ConfigBuilder
 {
@@ -29,10 +19,20 @@ namespace ConfigBuilder
             InitializeComponent();
         }
 
-        private void GetAllAppsButton_Click(object sender, RoutedEventArgs e)
+        private async void GetAllAppsButton_Click(object sender, RoutedEventArgs e)
         {
             string command = "winget export -o \"test.json\" --include-versions";
 
+            ProgressBar1.Visibility = Visibility.Visible;
+            await Task.Run(() => ExecutePowerShellCommand(command));
+            ProgressBar1.Visibility = Visibility.Hidden;
+
+            SaveConfigButton.Visibility = Visibility.Visible;
+            GetAllAppsButton.IsEnabled = false;
+        }
+
+        private void ExecutePowerShellCommand(string command)
+        {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = "powershell.exe",
@@ -58,15 +58,11 @@ namespace ConfigBuilder
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
-
-
-            SaveConfigButton.Visibility = Visibility.Visible;
-            GetAllAppsButton.IsEnabled = false;
         }
 
-        private async void SaveConfigButton_Click(object sender, RoutedEventArgs e)
+        private /*async*/ void SaveConfigButton_Click(object sender, RoutedEventArgs e)
         {
-            string configFilePath = System.IO.Path.GetFullPath(Directory.GetCurrentDirectory() + @"\test.json");
+            string configFilePath = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\test.json");
             if (!File.Exists(configFilePath))
             {
                 MessageBox.Show("Повторите сбор конфигурации", "Файл с конфигурацией не найден");
@@ -80,9 +76,11 @@ namespace ConfigBuilder
                     using (StreamReader reader = new StreamReader(file))
                     {
                         string jsonData = reader.ReadToEnd();
-                        MessageBox.Show(jsonData);
-                        string response = await PostRequestAsync("https://bus.gov.ru", jsonData);
-                        MessageBox.Show(response);
+                        //string responseJSON = await PostRequestAsync("http://91.210.169.254:8080/file/", jsonData);
+                        //JObject obj = JObject.Parse(responseJSON);
+                        //string uuid = (string)obj["uuid"];
+                        ConfigHyperlinkWindow configHyperlinkWindow = new ConfigHyperlinkWindow(this, $"http://91.210.169.254:8080/swagger-ui/index.html#/Контроллер%20файлов/loadFileByName");
+                        configHyperlinkWindow.ShowDialog();
                     }
                 }
             }
@@ -115,6 +113,25 @@ namespace ConfigBuilder
                     return $"Exception: {ex.Message}";
                 }
             }
+        }
+
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow(this, AuthorizationWindowType.Registration);
+            authorizationWindow.ShowDialog();
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow(this, AuthorizationWindowType.Login);
+            authorizationWindow.ShowDialog();
+        }
+
+        public void HideAuthorizationButtonsAndShowConfigButtons()
+        {
+            RegistrationButton.Visibility = Visibility.Hidden;
+            LoginButton.Visibility = Visibility.Hidden;
+            GetAllAppsButton.Visibility = Visibility.Visible;
         }
     }
 }

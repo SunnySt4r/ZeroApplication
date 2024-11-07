@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigBuilder"
         mc:Ignorable="d"
-        Title="Config Builder" Height="279" Width="415" WindowStartupLocation="CenterScreen" Icon="/download.png">
+        Title="Config Builder" Height="250" Width="400" WindowStartupLocation="CenterScreen" Icon="/download.png">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -69,21 +69,34 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="34*"/>
-            <ColumnDefinition Width="55*"/>
-            <ColumnDefinition Width="712*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="GetAllAppsButton" Content="Get All Apps" HorizontalAlignment="Left" Margin="62,45,0,0" VerticalAlignment="Top" Height="50" Width="200" Grid.Column="2" Click="GetAllAppsButton_Click"
-        Background="#FF64CCF1"
-        Foreground="White"
-        FontFamily="Arial"
-        FontSize="20"
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="RegistrationButton" Content="Регистрация" HorizontalAlignment="Center" Margin="0,43,0,0" VerticalAlignment="Top" Height="50" Width="200"
+            Background="#FF64CCF1"
+            Foreground="White"
+            FontFamily="Arial"
+            FontSize="20" Click="RegistrationButton_Click"
         />
-        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="SaveConfigButton" Content="Save Config" HorizontalAlignment="Left" Margin="62,155,0,0" VerticalAlignment="Top" Height="45" Width="200" Grid.Column="2" Click="SaveConfigButton_Click"
-        Background="#FF64CCF1"
-        Foreground="White"
-        FontFamily="Arial"
-        FontSize="20"
-        Visibility="Hidden"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="LoginButton" Content="Вход" Margin="0,127,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Width="200"
+            Background="#FF64CCF1"
+            Foreground="White"
+            FontFamily="Arial"
+            FontSize="20" Click="LoginButton_Click"
+        />
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="GetAllAppsButton" Content="Get All Apps" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" Height="50" Width="200" Click="GetAllAppsButton_Click"
+            Background="#FF64CCF1"
+            Foreground="White"
+            FontFamily="Arial"
+            FontSize="20"
+            Visibility="Hidden"
+        />
+        <ProgressBar Name="ProgressBar1" IsIndeterminate="True" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" Height="20" Margin="0,117,0,0"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" x:Name="SaveConfigButton" Content="Save Config" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="45" Width="200" Click="SaveConfigButton_Click"
+            Background="#FF64CCF1"
+            Foreground="White"
+            FontFamily="Arial"
+            FontSize="20"
+            Visibility="Hidden"
+        />
     </Grid>
 </Window>

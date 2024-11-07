@@ -1,0 +1,32 @@
+token:
+  signing:
+    key: 7b4d29a545feeac18e7e73fa656746f77f36ffa2c1117b0bf8895ccd1bc4048855d7c51f1fb7b1e82d29146e7bca58fdc418d1d7d6c9892e13ed89f85534f36d99014daa44ba2f4948e39249907fabbc6914591d1756631b5722015cfdf1dacd9882c7e0a14cf627fc2d8bc50229b7809496111e40bd5ca14f2222d2cfdc9c915f8e33c62593479a08233ff5bea19e7768e137e1b3ff6a72d80ce5af22ad302046d6ead9a8e1d407b53cf02422c20c20101af52f87aa94b64fb7bc123c484f727a12ff8d8a6c4b85c8f4dc425e587cab5f75dee478d196befcde9d116348401e9da4016b8439da7b0609b719c218fc582da3c079f3ad9d286162cdaf4b86df26
+
+spring:
+  liquibase:
+    change-log: classpath:/db/db-changelog.xml
+  datasource:
+    url: jdbc:postgresql://localhost:15432/database
+    username: user
+    password: password
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+minio:
+  url: http://localhost:9000
+  port: 9000
+  accessKey: user
+  secretKey: password
+  secure: false
+  bucket: minio-storage
+  file-size: 10485760
+
+server:
+  address: localhost
+  port: 8080
+
+logging:
+  level:
+    "liquibase": info
