@@ -12,5 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FilePropertyDto {
-    String link;
+    String uuid;
 }

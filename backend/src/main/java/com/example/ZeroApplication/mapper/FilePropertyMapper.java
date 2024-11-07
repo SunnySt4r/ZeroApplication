@@ -7,7 +7,7 @@ import com.example.ZeroApplication.entity.FilePropertyEntity;
 
 @Mapper(componentModel = "spring")
 public abstract class FilePropertyMapper {
-    @Mapping(target = "link", source = "uuid")
+    @Mapping(target = "uuid", source = "uuid")
     public abstract FilePropertyDto toFilePropertyDto(FilePropertyEntity file);
 }
 
