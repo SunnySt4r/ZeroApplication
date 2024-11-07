@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { isNullOrUndefined, isUndefined } from "util";
+import { SERVER, post } from "../api/utils";
 
-interface ServerResponse {
+export interface ServerResponse {
   $schema: string;
   CreationDate: string;
   Sources: [
@@ -25,98 +25,90 @@ interface Package {
   Version: string;
 }
 
-const PostConfig = async (url: string, body: any) => {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "appication/json",
-      },
-      body: JSON.stringify(body),
+interface Props {
+  config: ServerResponse;
+}
+
+const CheckboxList: React.FC<Props> = (props) => {
+  const sources = props.config.Sources;
+  const [checkedItems, setCheckedItems] = useState<string[]>(
+    sources.flatMap((source) =>
+      source.Packages.map((pkg) => pkg.PackageIdentifier),
+    ),
+  );
+
+  const handleCheckboxChange = (pkgId: string) => {
+    setCheckedItems((prev) => {
+      if (prev.includes(pkgId)) {
+        return prev.filter((id) => id !== pkgId);
+      } else {
+        return [...prev, pkgId];
+      }
     });
+  };
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+  const getUpdatedConfig = () => {
+    const newSources = sources.map((source) => ({
+      ...source,
+      Packages: source.Packages.filter((pkg) =>
+        checkedItems.includes(pkg.PackageIdentifier),
+      ),
+    }));
 
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("There was a problem with the request:", err);
-  }
-};
+    return { ...props.config, Souces: newSources };
+  };
 
-const CheckboxList: React.FC = () => {
-  const [data, setData] = useState<Package[] | null>(null);
-  const [loading, setLoading] = useState(true);
+  const handleInstall = async () => {
+    const newConfig = getUpdatedConfig();
+    const res = await post("/file/", newConfig).catch((err) =>
+      console.error(err),
+    );
+    console.log(res);
+  };
 
-  const handleCheckboxChange = (id: string) => {
-    setCheckedItems((prev) =>
-      prev.includes(id)
-        ? prev.filter((itemId) => itemId !== id)
-        : [...prev, id],
+  const handleUncheckAll = () => {
+    setCheckedItems([]);
+  };
+  const handleCheckAll = () => {
+    setCheckedItems(
+      sources.flatMap((source) =>
+        source.Packages.map((pkg) => pkg.PackageIdentifier),
+      ),
     );
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-<<<<<<< Updated upstream
-        const response = await fetch("http://91.210.169.254:8080/file/all", {
-          mode: "cors",
-          credentials: "include",
-        })
-=======
-        const response = await fetch(
-          "http://91.210.169.254:8080/file/d816a08d-460c-4f6a-a891-30aa9d6bb04e",
-          {
-            mode: "cors",
-            credentials: "include",
-          },
-        )
->>>>>>> Stashed changes
-          .then(async (response) => (await response.json()) as ServerResponse)
-          .then((data) => {
-            const { Packages } = data.Sources[0];
-            setData(Packages);
-          });
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const [checkedItems, setCheckedItems] = useState<string[]>(
-    isNullOrUndefined(data) ? [] : data?.map((pkg) => pkg.PackageIdentifier),
-  );
-
-  if (loading) return <p>loading...</p>;
-
   return (
-    <div className="p-4 space-y-2 bg-surface rounded-lg mt-20">
-      {data == null ? (
-        <span>No packages loaded</span>
-      ) : (
-        data.map((item) => (
-          <label
-            key={item.PackageIdentifier}
-            className="flex items-center space-x-2"
-          >
-            <input
-              type="checkbox"
-              checked={checkedItems.includes(item.PackageIdentifier)}
-              onChange={() => handleCheckboxChange(item.PackageIdentifier)}
-              className="accent-purple-600" // Tailwind for custom checkbox color
-            />
-            <span>{item.PackageIdentifier}</span>
-          </label>
-        ))
-      )}
-      <button className="mt-4">Install</button>
-    </div>
+    <>
+      <div className="p-4 space-y-2 bg-surface rounded-lg">
+        {sources == null ? (
+          <span>No packages loaded</span>
+        ) : (
+          sources.map((item) =>
+            item.Packages.map((pkg) => (
+              <label
+                key={pkg.PackageIdentifier}
+                className="flex items-center space-x-2"
+              >
+                <input
+                  type="checkbox"
+                  checked={checkedItems.includes(pkg.PackageIdentifier)}
+                  onChange={() => handleCheckboxChange(pkg.PackageIdentifier)}
+                />
+                <span>{pkg.PackageIdentifier}</span>
+                <span>Source: {item.SourceDetails.Name}</span>
+              </label>
+            )),
+          )
+        )}
+      </div>
+      <div className="mt-4 flex space-x-2">
+        <button className="bg-blue-300" onClick={handleInstall}>
+          Install
+        </button>
+        <button onClick={handleUncheckAll}>Uncheck All</button>
+        <button onClick={handleCheckAll}>Check All</button>
+      </div>
+    </>
   );
 };
 
