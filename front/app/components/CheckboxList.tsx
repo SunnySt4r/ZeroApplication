@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { SERVER, post } from "../api/utils";
+import React, { useState } from "react";
+import { post } from "../api/utils";
 
 export interface ServerResponse {
   $schema: string;
@@ -55,7 +55,7 @@ const CheckboxList: React.FC<Props> = (props) => {
       ),
     }));
 
-    return { ...props.config, Souces: newSources };
+    return { ...props.config, Sources: newSources };
   };
 
   const handleInstall = async () => {
