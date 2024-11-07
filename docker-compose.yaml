@@ -17,7 +17,7 @@ services:
         condition: service_started
     environment:
       SERVER_PORT: ${SERVER_PORT}
-      SERVER_ADDRESS: ${SPRING_DATASOURCE_URL}
+      SERVER_ADDRESS: ${SERVER_ADDRESS}
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       MINIO_URL: ${MINIO_URL}
 
