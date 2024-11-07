@@ -17,7 +17,7 @@ public class BatGeneratorService {
                     com.google.gson.JsonObject packageObject = packageElement.getAsJsonObject();
                     String packageId = packageObject.get("PackageIdentifier").getAsString();
                     String version = packageObject.get("Version").getAsString();
-                    String command = String.format("winget install  %s version %s --silent --accept-package-agreements --accept-source-agreements", packageId, version);
+                    String command = String.format("winget install  %s --version %s --silent --accept-package-agreements --accept-source-agreements", packageId, version);
                     batContent.append(command).append(System.lineSeparator());
                 }
             }

@@ -36,5 +36,6 @@ bld/
 
 ConfigBuilder/ConfigBuilder/bin/Debug
 ConfigBuilder/ConfigBuilder/obj/Debug
+ConfigBuilder/ConfigBuilder/obj/Release
 ConfigBuilder/ClassLibrary/bin
 ConfigBuilder/packages/**
