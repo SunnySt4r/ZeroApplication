@@ -11,7 +11,7 @@ export const post = async (tail: string, data: object) => {
   if (!response.ok) {
     throw new Error(`Failed to post data. Status: ${response.status}`);
   }
-  return response.json();
+  return response;
 };
 
 export const get = async (tail: string) => {

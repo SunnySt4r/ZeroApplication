@@ -5,6 +5,7 @@ import CheckboxList from "@/components/CheckboxList";
 import { ServerResponse } from "@/components/CheckboxList";
 import { useSearchParams } from "next/navigation";
 import { get } from "@/api/utils";
+import { DataProvider } from "@/components/configContext";
 
 const Uuid = () => {
   const uuid = useSearchParams().get("uuid");
@@ -26,15 +27,19 @@ const Uuid = () => {
 
   return (
     <main>
-      <h1 className="text-2xl font-semibold text-text ">Loaded your config</h1>
-      {config === null || config === undefined ? (
-        <p>Nothing here...</p>
-      ) : (
-        <>
-          <p>Choose what to install</p>
-          <CheckboxList config={config}></CheckboxList>
-        </>
-      )}
+      <DataProvider>
+        <h1 className="text-2xl font-semibold text-text ">
+          Loaded your config
+        </h1>
+        {config === null || config === undefined ? (
+          <p>Nothing here...</p>
+        ) : (
+          <>
+            <p>Choose what to install</p>
+            <CheckboxList config={config} uuid={uuid}></CheckboxList>
+          </>
+        )}
+      </DataProvider>
     </main>
   );
 };

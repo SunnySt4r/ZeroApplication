@@ -28,6 +28,7 @@ interface Package {
 
 interface Props {
   config: ServerResponse;
+  uuid: string;
 }
 
 const CheckboxList: React.FC<Props> = (props) => {
@@ -61,10 +62,21 @@ const CheckboxList: React.FC<Props> = (props) => {
 
   const handleInstall = async () => {
     const newConfig = getUpdatedConfig();
-    const res = await post("/file/", newConfig).catch((err) =>
-      console.error(err),
-    );
-    console.log(res);
+    const res = await post(`/file/${props.uuid}/generate`, newConfig)
+      .then(async (res) => {
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "installer.bat";
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((err) => console.error(err));
   };
 
   const router = useRouter();
