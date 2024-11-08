@@ -1,43 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { post } from "../api/utils";
 import { useRouter } from "next/navigation";
-
-export interface ServerResponse {
-  $schema: string;
-  CreationDate: string;
-  Sources: [
-    {
-      Packages: Package[];
-      SourceDetails: {
-        Argument: string;
-        Identifier: string;
-        Name: string;
-        Type: string;
-      };
-    },
-  ];
-  WinGetVersion: string;
-}
-
-interface Package {
-  PackageIdentifier: string;
-  Version: string;
-}
+import { IResponse, useData } from "./configContext";
 
 interface Props {
-  config: ServerResponse;
+  config: IResponse;
   uuid: string;
 }
 
 const CheckboxList: React.FC<Props> = (props) => {
   const sources = props.config.Sources;
+  const { config, setConfig } = useData();
   const [checkedItems, setCheckedItems] = useState<string[]>(
     sources.flatMap((source) =>
       source.Packages.map((pkg) => pkg.PackageIdentifier),
     ),
   );
+
+  useEffect(() => {
+    updateConfig();
+  }, [checkedItems]);
 
   const handleCheckboxChange = (pkgId: string) => {
     setCheckedItems((prev) => {
@@ -49,7 +33,7 @@ const CheckboxList: React.FC<Props> = (props) => {
     });
   };
 
-  const getUpdatedConfig = () => {
+  const updateConfig = () => {
     const newSources = sources.map((source) => ({
       ...source,
       Packages: source.Packages.filter((pkg) =>
@@ -57,12 +41,14 @@ const CheckboxList: React.FC<Props> = (props) => {
       ),
     }));
 
-    return { ...props.config, Sources: newSources };
+    setConfig({ ...props.config, Sources: newSources });
   };
 
   const handleInstall = async () => {
-    const newConfig = getUpdatedConfig();
-    const res = await post(`/file/${props.uuid}/generate`, newConfig)
+    if (!config) {
+      return <p>Error...</p>;
+    }
+    await post(`/file/${props.uuid}/generate`, config)
       .then(async (res) => {
         const blob = await res.blob();
         const url = window.URL.createObjectURL(blob);
@@ -110,7 +96,11 @@ const CheckboxList: React.FC<Props> = (props) => {
               >
                 <input
                   type="checkbox"
-                  checked={checkedItems.includes(pkg.PackageIdentifier)}
+                  checked={config?.Sources.some((src) =>
+                    src.Packages.some(
+                      (item) => item.PackageIdentifier == pkg.PackageIdentifier,
+                    ),
+                  )}
                   onChange={() => handleCheckboxChange(pkg.PackageIdentifier)}
                 />
                 <span>

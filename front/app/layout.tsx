@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Suspense } from "react";
+import { DataProvider } from "@/components/configContext";
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -32,7 +33,9 @@ export default function RootLayout({
       >
         <Header />
         <Suspense fallback={<div>Loading...</div>}>
-          <div className="mt-32">{children}</div>
+          <DataProvider>
+            <div className="mt-32">{children}</div>
+          </DataProvider>
         </Suspense>
       </body>
     </html>

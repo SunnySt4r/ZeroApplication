@@ -1,22 +1,38 @@
+"use client";
+
 import React, { createContext, useContext, useState } from "react";
 
-export interface TrackedData {
-  id: number;
-  name: string;
-  description: string;
+export interface IResponse {
+  $schema: string;
+  CreationDate: string;
+  Sources: {
+    Packages: IPackage[];
+    SourceDetails: {
+      Argument: string;
+      Identifier: string;
+      Name: string;
+      Type: string;
+    };
+  }[];
+  WinGetVersion: string;
+}
+
+interface IPackage {
+  PackageIdentifier: string;
+  Version: string;
 }
 
 interface DataContextType {
-  trackedData: TrackedData | null;
-  setTrackedData: React.Dispatch<React.SetStateAction<TrackedData | null>>;
+  config: IResponse | null;
+  setConfig: React.Dispatch<React.SetStateAction<IResponse | null>>;
 }
 
-const DataContext = createContext<DataContextType | undefined>(undefined);
+const DataContext = createContext<DataContextType | null>(null);
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [trackedData, setTrackedData] = useState<TrackedData | null>(null);
+  const [config, setConfig] = useState<IResponse | null>(null);
   return (
-    <DataContext.Provider value={{ trackedData, setTrackedData }}>
+    <DataContext.Provider value={{ config: config, setConfig: setConfig }}>
       {children}
     </DataContext.Provider>
   );
@@ -24,7 +40,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useData = (): DataContextType => {
   const context = useContext(DataContext);
-  if (context === undefined) {
+  if (context === null) {
     throw new Error("useData must be used within a DataProvider");
   }
   return context;

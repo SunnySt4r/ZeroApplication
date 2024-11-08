@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import getPackages, { IPackage, IResponse } from "@/api/wingetrun";
 import SearchBar from "@/components/SearchBar";
 import CardContainer from "@/components/CardContainer";
+import { useData } from "@/components/configContext";
 
 export default function Featured() {
   const [pkgs, setPkgs] = useState<IPackage[]>([]);
@@ -10,6 +11,7 @@ export default function Featured() {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const scrollPositionRef = useRef<number>(0);
+  const { config, setConfig } = useData();
 
   const loadMore = () => {
     scrollPositionRef.current = window.scrollY;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface CardProps {
   packageName: string;
@@ -13,6 +13,11 @@ const Card: React.FC<CardProps> = ({
   description,
   onAdd,
 }) => {
+  const [added, setAdded] = useState(false);
+  const handleClick = () => {
+    setAdded(!added);
+  };
+
   return (
     <div className="bg-color-background p-4 rounded-lg shadow-lg flex flex-col justify-between w-74 h-64 overflow-hidden border border-color-muted-text">
       <div>
@@ -26,12 +31,21 @@ const Card: React.FC<CardProps> = ({
           {description}
         </p>
       </div>
-      <button
-        onClick={onAdd}
-        className="mt-4 bg-color-purple text-background font-medium py-1 px-4 rounded hover:bg-gold"
-      >
-        Add
-      </button>
+      {added ? (
+        <button
+          onClick={handleClick}
+          className="mt-4 bg-color-pink text-background font-medium py-1 px-4 rounded hover:bg-gold"
+        >
+          Remove
+        </button>
+      ) : (
+        <button
+          onClick={handleClick}
+          className="mt-4 bg-color-purple text-background font-medium py-1 px-4 rounded hover:bg-gold"
+        >
+          Add
+        </button>
+      )}
     </div>
   );
 };
